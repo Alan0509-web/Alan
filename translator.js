@@ -9,7 +9,8 @@ const localDictionary = {
     "how are you": { "zh_TW": "你好嗎？", "zh_CN": "你好吗？", "ja": "お元気ですか？", "ko": "잘 지냈어요?", "es": "全面 ¿Cómo estás?", "fr": "Comment ça va?", "de": "Wie geht es dir?", "it": "Come stai?", "pt": "Como você está?", "en": "How are you?" },
     "nice to meet you": { "zh_TW": "很高興認識你", "zh_CN": "很高兴认识你", "ja": "はじめまして", "ko": "만나서 반가워요", "es": "Gusto en conocerte", "fr": "Ravi de vous rencontrer", "de": "Freut mich, dich kennenzulernen", "it": "Piacere di conoscerti", "pt": "Prazer em conhecê-lo", "en": "Nice to meet you" },
     "welcome": { "zh_TW": "歡迎", "zh_CN": "欢迎", "ja": "ようこそ", "ko": "환영합니다", "es": "Bienvenido", "fr": "Bienvenue", "de": "Willkommen", "it": "Benvenuto", "pt": "Bem-vindo", "en": "Welcome" },
-    "goodbye": { "zh_TW": "再見", "zh_CN": "再见", "ja": "さようなら", "ko": "안녕히 가세요", "es": "Adiós", "fr": "Au revoir", "de": "Auf Wiedersehen", "it": "Arrivederci", "pt": "Adeus", "en": "Goodbye" }
+    "goodbye": { "zh_TW": "再見", "zh_CN": "再见", "ja": "さようなら", "ko": "안녕히 가세요", "es": "Adiós", "fr": "Au revoir", "de": "Auf Wiedersehen", "it": "Arrivederci", "pt": "Adeus", "en": "Goodbye" },
+    "delicious": { "zh_TW": "好吃", "zh_CN": "好吃", "ja": "美味しい", "ko": "맛있어요", "es": "Delicioso", "fr": "Délicieux", "de": "Lecker", "it": "Delizioso", "pt": "Delicioso", "en": "Delicious" }
 };
 
 // 反向查詢字典 (本地備用方案使用)
@@ -156,7 +157,7 @@ function runLocalFallback(text, fromLang, toLang) {
     }
 
     targetTextarea.value = result;
-    // 修正：這裡原本錯寫成 countSpan，已更正為對應的 DOM 元素 targetCount
+    // 修正處：這裡成功指向正確的 targetCount 變數
     updateCharCount(targetTextarea, targetCount);
     showToast('已切換至本地字典');
     
@@ -250,7 +251,6 @@ function speakResult() {
     window.speechSynthesis.speak(utterance);
 }
 
-// 土司提示效果
 function showToast(message) {
     toast.textContent = message;
     toast.classList.add('show');
