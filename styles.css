@@ -1,1 +1,383 @@
+/* ==========================================================================
+   文青風核心色彩與字體定義
+   ========================================================================== */
+:root {
+    --bg-color: #f7f5f0;          /* 溫潤的暖米白、燕麥色 */
+    --card-bg: #ffffff;           /* 純白畫布 */
+    --text-main: #3a3530;         /* 帶點暖調的深茶色（取代死黑） */
+    --text-muted: #8c8275;        /* 莫蘭迪煙燻茶色 */
+    --accent-color: #7d8c77;      /* 經典文青鼠尾草綠 / 暮綠 */
+    --accent-hover: #63705e;
+    --border-color: #e8e4dc;      /* 極淡的工藝紙質色框線 */
+    --radius: 16px;               /* 圓潤、無侵略性的高圓角 */
+    --shadow: 0 8px 30px rgba(58, 53, 48, 0.04); /* 極輕微的空氣感陰影 */
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* 優先採用具有人文氣息的優雅微軟正黑體或預設襯線，保持字體呼吸 */
+    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    letter-spacing: 0.05em; /* 微幅調寬字距，營造呼吸感 */
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 50px 40px;
+    border: 1px solid rgba(232, 228, 220, 0.5);
+}
+
+/* ==========================================================================
+   頁首與頁尾 (溫柔內斂的文字排版)
+   ========================================================================== */
+header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 500; /* 捨棄粗體，改用中細體更顯優雅 */
+    color: var(--text-main);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+header p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   翻譯主區域 (左右留白、簡約區塊)
+   ========================================================================== */
+.translator-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .translator-wrapper {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .swap-button-container {
+        transform: rotate(90deg);
+        margin: 8px 0;
+    }
+    .container {
+        padding: 30px 20px;
+    }
+}
+
+.translation-box {
+    background: #fbfbfa;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* 聚焦時的柔和溫潤邊框 */
+.translation-box:focus-within {
+    border-color: var(--accent-color);
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(125, 140, 119, 0.06);
+}
+
+.box-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.box-header label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.box-header select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* 移除原生箭頭改用更簡約的外觀 */
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238c8275' stroke-width='2'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 35px;
+}
+
+.box-header select:hover {
+    border-color: var(--text-muted);
+}
+
+.textarea {
+    width: 100%;
+    height: 180px;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 1rem;
+    line-height: 1.7;
+    outline: none;
+    color: var(--text-main);
+}
+
+.textarea::placeholder {
+    color: #c2bbb0;
+}
+
+.textarea[readonly] {
+    color: #514b43;
+}
+
+.char-count {
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-family: Courier, monospace; /* 數字使用等寬字體更顯簡練 */
+}
+
+/* 交換按鈕 */
+.swap-button {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.swap-button:hover {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.swap-button svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   按鈕控制項 (扁平、安靜、內斂)
+   ========================================================================== */
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 1px solid transparent;
+    outline: none;
+    letter-spacing: 0.1em;
+}
+
+/* 主要翻譯按鈕選用草木綠 */
+.btn-primary {
+    background: var(--accent-color);
+    color: white;
+    flex: 1;
+    min-width: 140px;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-color);
+    border-color: var(--text-muted);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+}
+
+.btn-outline:hover {
+    border-color: var(--text-muted);
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   常用短語與歷史紀錄 (如生活選物般的標籤)
+   ========================================================================== */
+.preset-section, .history-section {
+    margin-top: 35px;
+}
+
+.preset-section h2, .history-section h2 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    color: var(--text-main);
+    border-left: 3px solid var(--accent-color); /* 左側文青風綠條 */
+    padding-left: 10px;
+}
+
+.preset-phrases {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: rgba(125, 140, 119, 0.05);
+}
+
+.history-list {
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: #fbfbfa;
+    margin-bottom: 16px;
+}
+
+/* 簡約客製化捲動條 */
+.history-list::-webkit-scrollbar {
+    width: 4px;
+}
+.history-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.history-item {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(232, 228, 220, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #514b43;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
+.history-text strong {
+    font-weight: 400;
+    color: var(--accent-color);
+    margin-right: 6px;
+}
+
+.history-time {
+    font-size: 0.75rem;
+    color: #b0a696;
+    font-family: Courier, monospace;
+}
+
+/* ==========================================================================
+   Toast 提示訊息 (優雅無負擔的通知)
+   ========================================================================== */
+.toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: var(--text-main);
+    color: #f7f5f0;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.95;
+}
